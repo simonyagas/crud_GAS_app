@@ -37,10 +37,10 @@
               <td v-for="header in headers">
                 <div v-if="header.value === 'actions' " class="d-flex justify-content-start align-items-center ">
                   <button type="button" class="btn btn-secondary btn-sm me-3" data-bs-toggle="modal" data-bs-target="#newCustomerForm" :disabled="loading" @click="showEditForm(item)">
-                    Edit
+                    Editar
                   </button>
                   <button type="button" class="btn btn-danger btn-sm me-3" data-bs-toggle="modal" data-bs-target="#newCustomerForm" :disabled="loading" @click="showDeleteForm(item)">
-                    Delete
+                    Borrar
                   </button>
                 </div>
                 <template v-else>
@@ -56,7 +56,7 @@
           <nav aria-label="Page navigation example">
             <ul class="pagination">
               <li class="page-item" @click="decreasePageNumber" :class="loading || page == 1 ? 'disabled' : '' ">
-                <button class="page-link">Previous</button></li>
+                <button class="page-link">Anterior</button></li>
               <li 
                 class="page-item" 
                 :class="index + 1 == page ? 'active' : loading ? 'disabled': ''" 
@@ -65,7 +65,7 @@
                 >
                   <button class="page-link">{{ index + 1 }}</a></li>
               <li class="page-item" @click="increasePageNumber"  :class="loading || page == pages ? 'disabled' : '' ">
-                <button class="page-link">Next</a></li>
+                <button class="page-link">Siguiente</a></li>
             </ul>
           </nav>
         </div>
