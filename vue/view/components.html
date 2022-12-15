@@ -1,222 +1,326 @@
 <script>
-    const customerFormData = {
-        id: {
-          id: "id",
-          label: "ID",
-          type: "text",
-          value: null,
-          disabled: true,
-        },
-        organizacion: {
-          id: "organizacion",
-          label: "Nombre de Organización",
-          type: "text",
-          value: null,
-        },
-        sector: {
-          id: "sector",
-          label: "Sector de Organización",
-          type: "select",
-          value: null,
-          options: ["Politicas Publicas", "Socio comunitario", "Productivo", "Academico"]
-        },
-        ministerio: {
-          id: "ministerio",
-          label: "Ministerio, si corresponde",
-          type: "select",
-          value: null,
-          options: ["Politicas Publicas", "Socio comunitario", "Productivo", "Academico"]
-        },
-        cuit: {
-          id: "cuit",
-          label: "Cuit",
-          type: "text",
-          value: null,
-        },
-        nombre_contacto: {
-          id: "nombre_contacto",
-          label: "Nombre del contacto",
-          type: "text",
-          value: null,
-        },
-        cargo_contacto: {
-          id: "cargo_contacto",
-          label: "Cargo del contacto",
-          type: "text",
-          value: null,
-        },
-        mail_contacto: {
-          id: "mail_contacto",
-          label: "Mail o telefono de contacto",
-          type: "text",
-          value: null,
-        },
-        orientacion: {
-          id: "orientacion",
-          label: "Orientacion escolar",
-          type: "select",
-          value: null,
-          options: [
-          "Agro y ambiente",
-          "Arte",
-          "Ciencias naturales",
-          "Ciencias sociales y humanidades",
-          "Comunicación",
-          "Economía y administración",
-          "Educación",
-          "Educación física",
-          "Informática",
-          "Lenguas",
-          "Literatura",
-          "Matemática y física",
-          "Turismo"
-        ]
-        },
-        cupos: {
-          id: "cupos",
-          label: "Cupos acordados",
-          type: "text",
-          value: null,
-        },
-        turno: {
-          id: "turno",
-          label: "Turno",
-          type: "select",
-          value: null,
-          options: ["Turno Mañana", "Turno Tarde", "Turno Vespertino"]
-        },
-        tad: {
-          id: "tad",
-          label: "TAD",
-          type: "text",
-          value: null,
-        },
-        fecha: {
-          id: "fecha",
-          label: "Fecha",
-          type: "text",
-          value: null,
-        },
-      }
-    
-      const vInput = Vue.component("v-input", {
-        props: {
-          item: Object,
-          // item = {id: "name", label: "Name", placeholder: "Enter the client name"}
-        },
-        template: `
-          <div>
-            <label 
-              :for="item.id" 
-              class="form-label">{{item.label}}</label>
-            <select 
-              v-if="item.type === 'select'"
-              v-model="item.value" 
-              class="form-control form-select" 
-              :id="item.id" 
-              :disabled="item.disabled"
+  const customerFormData = {
+      id: {
+        id: "id",
+        label: "ID",
+        type: "text",
+        value: null,
+        disabled: true,
+      },
+      organizacion: {
+        id: "organizacion",
+        label: "Nombre de Organización",
+        type: "text",
+        value: null,
+      },
+      referente: {
+        id: "referente",
+        label: "Referente de DG",
+        type: "select",
+        value: null,
+        options: ["Silvia Ferreiros", "Joaquín Delfino ", "Nicolas Zavala", "Mayra Wilson"],
+      },
+      sector: {
+        id: "sector",
+        label: "Sector de Organización",
+        type: "select",
+        value: null,
+        options: ["Politicas Publicas", "Socio comunitario", "Productivo", "Academico"]
+      },
+      ministerio: {
+            id: "ministerio",
+            label: "Ministerio, si corresponde",
+            type: "select",
+            value: null,
+            options: ["No corresponde",
+            "Jefatura de Gobierno",
+            "Vicejefatura de Gobierno",
+            "Jefatura de Gabinete de Ministros",
+            "Hacienda y Finanzas",
+            "Justicia y Seguridad",
+            "Salud",
+            "Educación",
+            "Desarrollo Económico y Producción",
+            "Cultura",
+            "Desarrollo Humano y Hábitat",
+            "Gobierno",
+            "Espacio Público e Higiene Urbana",
+            "Secretarías Legal y Tecnica",
+            "Secretaría General y de Relaciones Internacionales",
+            "Secretaría Medios",
+            "Secretaría de Asuntos Estratégicos",
+            "Secretaría de Comunicación, Contenidos y Participación Ciudadana",
+            "Secretaría Ambiente",
+            "Procuración General de la Ciudad de Buenos Aires",
+            "Sindicatura General de la Ciudad de Buenos Aires",
+            "Consejo de los Derechos de Niñas, Niños y Adolescentes Ley N° 114",
+            "Consejo de Planeamiento Estratégico",
+            "Ente Único Regulador de los Servicios Públicos Ley N° 210"]
+          },
+      cuit: {
+        id: "cuit",
+        label: "Cuit",
+        type: "text",
+        value: null,
+      },
+      nombre_contacto: {
+        id: "nombre_contacto",
+        label: "Nombre del contacto",
+        type: "text",
+        value: null,
+      },
+      cargo_contacto: {
+        id: "cargo_contacto",
+        label: "Cargo del contacto",
+        type: "text",
+        value: null,
+      },
+      tel_contacto: {
+        id: "tel_contacto",
+        label: "Telefono de contacto",
+        type: "text",
+        value: null,
+      },
+      mail_contacto: {
+        id: "mail_contacto",
+        label: "Mail de contacto",
+        type: "text",
+        value: null,
+      },
+      orientacion1: {
+        id: "orientacion1",
+        label: "Orientacion escolar 1",
+        type: "select",
+        value: null,
+        options: [
+        "Agro y ambiente",
+        "Arte",
+        "Ciencias naturales",
+        "Ciencias sociales y humanidades",
+        "Comunicación",
+        "Economía y administración",
+        "Educación",
+        "Educación física",
+        "Informática",
+        "Lenguas",
+        "Literatura",
+        "Matemática y física",
+        "Turismo"
+      ]
+      },
+      orientacion2: {
+        id: "orientacion2",
+        label: "Orientacion escolar 2",
+        type: "select",
+        value: null,
+        options: [
+        "Agro y ambiente",
+        "Arte",
+        "Ciencias naturales",
+        "Ciencias sociales y humanidades",
+        "Comunicación",
+        "Economía y administración",
+        "Educación",
+        "Educación física",
+        "Informática",
+        "Lenguas",
+        "Literatura",
+        "Matemática y física",
+        "Turismo"
+      ]
+      }, 
+      cupos: {
+        id: "cupos",
+        label: "Cupos acordados",
+        type: "text",
+        value: null,
+      },
+      turno: {
+        id: "turno",
+        label: "Turno",
+        type: "select",
+        value: [],
+        options: [
+        "TM",
+        "TT",
+        "TV",
+        "TM y TT",
+        "TM y TV",
+        "TT y TV",
+        "TM y TT y TV"
+      ]},
+      observacion: {
+        id: "observacion",
+        label: "Observaciones",
+        type: "textarea",
+        value: null,
+      },
+      participa: {
+        id: "participa",
+        label: "Participa en ACAP",
+        type: "select",
+        value: null,
+        options: ["Si", "No"]
+      },
+      tad: {
+        id: "tad",
+        label: "TAD",
+        type: "select",
+        value: null,
+        options: ["Si", "No", "En proceso"]
+      },
+      estado_acuerdo: {
+        id: "estado_acuerdo",
+        label: "Estado Acuerdo",
+        type: "select",
+        value: null,
+        options: ["Iniciado", "En proceso", "Finalizado"]
+      },
+      fecha: {
+        id: "fecha",
+        label: "Fecha firma AM",
+        type: "date",
+        value: null,
+        
+      },
+    }
+    const vInput = Vue.component("v-input", {
+      props: {
+        item: Object,
+        // item = {id: "name", label: "Name", placeholder: "Enter the client name"}
+      },
+      template: `
+        <div>
+          <label 
+            :for="item.id" 
+            class="form-label">{{item.label}}</label>
+          <select 
+            v-if="item.type === 'select'"
+            v-model="item.value" 
+            class="form-control form-select" 
+            :id="item.id" 
+            :disabled="item.disabled"
+          >
+            <option v-for="(option, index) in item.options" :key="index" :value="option">{{option}}</option>
+          </select>
+          <textarea 
+            :rows="item.rows"
+            v-else-if="item.type === 'textarea'"
+            v-model="item.value" 
+            class="form-control" 
+            :id="item.id" 
+            :disabled="item.disabled"
+            :placeholder="item.placeholder"
+            ></textarea>
+          <input 
+            v-else
+            :type="item.type"
+            v-model="item.value" 
+            class="form-control" 
+            :id="item.id" 
+            :placeholder="item.placeholder"
+            :disabled="item.disabled"
             >
-              <option v-for="(option, index) in item.options" :key="index" :value="option">{{option}}</option>
-            </select>
-            <textarea 
-              :rows="item.rows"
-              v-else-if="item.type === 'textarea'"
-              v-model="item.value" 
-              class="form-control" 
-              :id="item.id" 
-              :disabled="item.disabled"
-              :placeholder="item.placeholder"
-              ></textarea>
-            <input 
-              v-else
-              :type="item.type"
-              v-model="item.value" 
-              class="form-control" 
-              :id="item.id" 
-              :placeholder="item.placeholder"
-              :disabled="item.disabled"
-              >
-          </div>
-        `
-      })
-    
-      const customerForm = Vue.component("customer-form", {
-        components: {
-          "v-input": vInput,
-        },
-        props: {
-          form: Object,
-          loading: Boolean,
-          mode: String, // create/update/delete
-        },
-        created(){
-          if (this.loading === true) {
-            Object.keys(this.form).forEach(key => this.form[key].disabled = true)
-          }
-        },
-        template: `
-        <div class="modal fade" id="newCustomerForm" tabindex="-1" aria-labelledby="newCustomerFormLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg modal-dialog-centered">
-          <form @submit.prevent="$emit('submit')">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="newCustomerFormLabel">{{ mode }} Organizacion </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body row">
-                  <div class="col-12 col-sm-4 mb-3" v-if="form.id.value">
-                    <v-input :item="form.id" />
-                  </div>
-                  <div class="col-12 col-sm-8 mb-9" v-if="form.id.value">
-                  </div>
-                  <div class="col-12 col-sm-4 mb-3">
-                    <v-input :item="form.organizacion" />
-                  </div>
-                  <div class="col-12 col-sm-4 mb-3">
-                    <v-input :item="form.sector" />
-                  </div>
-                  <div class="col-12 col-sm-4 mb-3">
-                    <v-input :item="form.ministerio" />
-                  </div>
-                  <div class="col-12 col-sm-4 mb-3">
-                    <v-input :item="form.cuit" />
-                  </div>
-                  <div class="col-12 col-sm-4 mb-3">
-                    <v-input :item="form.nombre_contacto" />
-                  </div>
-                  <div class="col-12 col-sm-4 mb-3">
-                    <v-input :item="form.cargo_contacto" />
-                  </div>
-                  <div class="col-12 col-sm-4 mb-3">
-                    <v-input :item="form.mail_contacto" />
-                  </div>
-                  <div class="col-12 col-sm-4 mb-3">
-                    <v-input :item="form.orientacion" />
-                  </div>
-                  <div class="col-12 col-sm-4 mb-3">
-                    <v-input :item="form.cupos" />
-                  </div>
-                  <div class="col-12 col-sm-4 mb-3">
-                    <v-input :item="form.turno" />
-                  </div>
-                  <div class="col-12 col-sm-4 mb-3">
-                    <v-input :item="form.tad" />
-                  </div>
-                  <div class="col-12 col-sm-4 mb-3">
-                    <v-input :item="form.fecha" />
-                  </div>
-              </div>
-              <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" :disabled="loading">{{ mode }} Organizacion</button>
-              </div>
-            </div>
-          </form>
-          </div>
         </div>
-          
-        `
-      })
-    
-    
-    </script>
-    
+      `
+    })
+  
+  
+    const customerForm = Vue.component("customer-form", {
+      components: {
+        "v-input": vInput,
+      },
+      props: {
+        form: Object,
+        loading: Boolean,
+        mode: String, // create/update/delete
+      },
+      created(){
+        if (this.loading === true) {
+          Object.keys(this.form).forEach(key => this.form[key].disabled = true)
+        }
+      },
+      template: `
+      <div class="modal fade" id="newCustomerForm" tabindex="-1" aria-labelledby="newCustomerFormLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+        <form @submit.prevent="$emit('submit')">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="newCustomerFormLabel">{{ mode }} Organizacion </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body row">
+                <div class="col-12 col-sm-4 mb-3" v-if="form.id.value">
+                  <v-input :item="form.id" />
+                </div>
+                <div class="col-12 col-sm-8 mb-9" v-if="form.id.value">
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.referente" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.organizacion" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.sector" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.ministerio" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.cuit" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.nombre_contacto" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.cargo_contacto" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.tel_contacto" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.mail_contacto" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.orientacion1" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.orientacion2" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.cupos" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.turno" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.participa" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.tad" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.estado_acuerdo" />
+                </div>
+                <div class="col-12 col-sm-4 mb-3">
+                  <v-input :item="form.fecha" />
+                </div>
+                <div class="col-12 col-sm-12 mb-3">
+                  <v-input :item="form.observacion" />
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary" :disabled="loading">{{ mode }} Organizacion</button>
+            </div>
+          </div>
+        </form>
+        </div>
+      </div>
+        
+      `
+    })
+  
+  
+  </script>
+  
